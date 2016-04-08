@@ -1,0 +1,15 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {brazil}
+\beamer@sectionintoc {1}{O CEN\IeC {\'A}RIO}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{PRODUTOS}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{CESTA}{4}{0}{1}
+\beamer@subsectionintoc {1}{3}{ENTREGA}{5}{0}{1}
+\beamer@sectionintoc {2}{PROBLEMA DA MOCHILA}{6}{0}{2}
+\beamer@sectionintoc {3}{PROBLEMA DA MOCHILA APLICADO AO BA\IeC {\'U} DA FELICIDADE}{7}{0}{3}
+\beamer@subsectionintoc {3}{1}{PROBLEMA DA MOCHILA DE M\IeC {\'U}LTIPLA ESCOLHA}{8}{0}{3}
+\beamer@subsectionintoc {3}{2}{PROBLEMAS NP-COMPLETOS}{9}{0}{3}
+\beamer@sectionintoc {4}{POSS\IeC {\'I}VEIS SOLU\IeC {\c C}\IeC {\~O}ES}{10}{0}{4}
+\beamer@subsectionintoc {4}{1}{M\IeC {\'E}TODO GULOSO}{10}{0}{4}
+\beamer@subsectionintoc {4}{2}{PROGRAMA\IeC {\c C}\IeC {\~A}O DIN\IeC {\^A}MICA}{11}{0}{4}
+\beamer@subsectionintoc {4}{3}{RELAXA\IeC {\c C}\IeC {\~A}O LAGRANGEANA}{12}{0}{4}
+\beamer@sectionintoc {5}{CONCLUS\IeC {\~A}O}{13}{0}{5}

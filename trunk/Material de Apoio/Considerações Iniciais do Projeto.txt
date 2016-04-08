@@ -1,0 +1,11 @@
+Olá, Equipe de Desenvolvimento!
+
+É com grande prazer que lhes apresento nosso espaço de trabalho comunitário.
+Vamos fazer o melhor projeto integrador que a UDESC verá!
+Gostaria de pedir a vocês que mantenham a pasta de projeto organizada e atualizada.
+E também comentem a cada commit que fizerem no Tortoise SVN.
+
+Nota 1: A partir do momento que possuírmos as classes dos diagramas de classe do EA e o projeto do NetBeans
+sincronizados que façam alterações em um de cada por vez e sempre sincronizem antes de terminar o trabalho.
+
+Nota 2: Vamos obter um 10,0 neste semestre. Conto com vocês.
