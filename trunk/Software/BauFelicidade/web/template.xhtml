@@ -13,40 +13,37 @@
     </h:head>
     <h:body>
         <div id="header">
-            <div id="title">
-                Baú da Felicidade
+            <div id="title-header">
+                <h:graphicImage value="resources/img/logo.png"/>
             </div>
         </div>
         <div id="menu">
-                <h:form>  
-                    <p:growl id="messages"/>
-                    <p:menubar>
-                        <p:submenu label="Conta" icon="ui-icon-person">
-                            <p:menuitem value="Editar" url="#" icon="ui-icon-close" />
-                             <p:separator />
-                            <p:menuitem value="Sair" url="#" icon="ui-icon-close" />
-                        </p:submenu>
-                        <p:menuitem value="Manter usuários" url="#" icon="ui-icon-contact" />
-                        <p:menuitem value="Avaliar produtos" url="#" icon="ui-icon-tag" />
-                        <p:menuitem value="Oferecer produtos" url="#" icon="ui-icon-plusthick" />
-                        <p:menuitem value="Criar cesta" url="#" icon="ui-icon-pencil" />
-                    </p:menubar>
-                </h:form>
-            </div>
+            <h:form>  
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:submenu label="Conta" icon="ui-icon-person">
+                        <p:menuitem value="Editar" url="#" icon="ui-icon-close" />
+                        <p:separator />
+                        <p:menuitem value="Sair" url="#" icon="ui-icon-close" />
+                    </p:submenu>
+                    <p:menuitem value="Manter usuários" url="#" icon="ui-icon-contact" />
+                    <p:menuitem value="Avaliar produtos" url="#" icon="ui-icon-tag" />
+                    <p:menuitem value="Oferecer produtos" url="#" icon="ui-icon-plusthick" />
+                    <p:menuitem value="Criar cesta" url="#" icon="ui-icon-pencil" />
+                </p:menubar>
+            </h:form>
+        </div>
         <div id="content">
             <ui:insert name="conteudo"></ui:insert>
         </div>
         <div id="footer">
-            <div id="image-footer">
-                <h:graphicImage value="resources/img/udesc-footer.jpg" width=""/>
+            <div id="footer-logo">
+                <h:graphicImage value="resources/img/udesc_v.png"/>
             </div>
-            <div id="descricao-footer">
-                <p>Desenvolvido por:</p>
-                <p></p>
-            </div>
-            <div id="versao-footer">
-                
-            </div>
+<!--            <div id="footer-text">
+                Desenvolvimento de Sistemas para Web<br/>
+                Engenharia de Software
+            </div>-->
         </div>
     </h:body>
 </html>
