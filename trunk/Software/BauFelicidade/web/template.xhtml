@@ -7,15 +7,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title><ui:insert name="titulo"></ui:insert></title>
-        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="estilo.css"/>
+        <h:outputStylesheet library="css" name="font-awesome.min.css"/>
         <h:outputScript library="js" name="scripts.js"/>
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold"/>
     </h:head>
     <h:body>
         <div id="header">
-            <div id="title-header">
-                <h:graphicImage value="resources/img/logo.png"/>
-            </div>
+            Baú da Felicidade
         </div>
         <div id="menu">
             <h:form>  
@@ -23,7 +21,7 @@
                 <p:menubar>
                     <p:submenu label="Conta" icon="ui-icon-person">
                         <p:menuitem value="Editar" url="#" icon="ui-icon-close" />
-                        <p:menuitem value="Sair" url="#" icon="ui-icon-close" />
+                        <p:menuitem value="Sair" action="#{loginBean.logout}" icon="ui-icon-close" ajax="false"/>
                     </p:submenu>
                     <p:menuitem value="Manter usuários" url="#" icon="ui-icon-contact" />
                     <p:menuitem value="Avaliar produtos" url="#" icon="ui-icon-tag" />
@@ -39,10 +37,6 @@
             <div id="footer-logo">
                 <h:graphicImage value="resources/img/udesc_v.png"/>
             </div>
-<!--            <div id="footer-text">
-                Desenvolvimento de Sistemas para Web<br/>
-                Engenharia de Software
-            </div>-->
         </div>
     </h:body>
 </html>
