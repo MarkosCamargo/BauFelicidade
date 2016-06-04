@@ -102,7 +102,7 @@
                             <div class="blog-clear"></div>
                             <h:form>
                                 <p:growl id="messages"></p:growl>
-                                <p:panelGrid columns="2">
+                                <h:panelGrid columns="2" styleClass="tabela">
                                     
                                     <p:outputLabel value="Título:"/>
                                     <p:inputText id="input-titulo" value="#{livroBean.livro.titulo}" 	required="true"
@@ -136,8 +136,8 @@
                                     
 
                                     
-                                </p:panelGrid>
-                                <p:commandButton id="salvar" value="Cadastrar" action="#{livroBean.cadastrar()}"/>
+                                </h:panelGrid>
+                                <p:commandButton id="cadastrar" class="form-botao" value="Cadastrar" action="#{livroBean.cadastrar()}"/>
                             </h:form>
                         </div>
 
