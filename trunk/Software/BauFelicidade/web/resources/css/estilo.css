@@ -14,21 +14,19 @@ html, body {
     background-color: white;
     width: calc(100% - 30px);
     background: #ffffff;
-    font-family: Ubuntu, sans-serif;
-    height:60px;
-    padding:15px 15px;
-    line-height:15px;
-    color: #505050;
-    font-size: 36px;
-    font-weight: bold;
+    height:90px;   
 }
 
 
 #title-header {
-    padding-top: 10px;
-    font-size: 30pt;
-    /*font-family: Segoe UI;*/
-    /*background-color: yellow;*/
+    padding-left: 15px;
+    padding-top: 35px;
+    width: 500px;
+    font-family: Source Sans Pro, Ubuntu, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #505050;
+    line-height: 15px;
 }
 
 #menu{
@@ -36,9 +34,10 @@ html, body {
 }
 
 #content{
-    padding: 5px;
-    min-height: calc(100% - 142px - 45px - 30px);
+    padding: 10px;
+    min-height: calc(100% - 142px - 45px - 40px);
     max-height: auto;
+    font-family: Source Sans Pro, Ubuntu, sans-serif;
 }
 
 #footer {
@@ -49,12 +48,6 @@ html, body {
 }
 
 
-#index-header {
-    padding-top: 10px;
-    font-size: 30pt;
-    font-family: Segoe UI;
-    /*background-color: yellow;*/
-}
 
 
 #footer-logo{
