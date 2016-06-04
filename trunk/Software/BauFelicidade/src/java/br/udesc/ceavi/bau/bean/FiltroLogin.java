@@ -29,7 +29,6 @@ public class FiltroLogin implements Filter {
         HttpServletRequest requisicao = (HttpServletRequest) request;
         HttpSession session = requisicao.getSession();
         if ((session.getAttribute("usuario") != null)
-                || (requisicao.getRequestURI().endsWith("cadastro.jsf"))
                 || (requisicao.getRequestURI().endsWith("index.jsf"))
                 || (requisicao.getRequestURI().contains("javax.faces.resource/"))) {
             if ((session.getAttribute("usuario") != null) && (requisicao.getRequestURI().endsWith("index.jsf"))){

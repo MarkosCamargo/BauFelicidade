@@ -61,8 +61,9 @@
                     <ul class="nav navbar-nav navbar-right main-navigation">
                         <li><a href="#home" class="smoothScroll">Início</a></li>
                         <li><a href="#overview" class="smoothScroll">Sobre</a></li>
-                        <li><a href="cadastro.jsf" class="smoothScroll">Cadastro</a></li>
                         <li><a href="#newsletter" class="smoothScroll">Entrar</a></li>
+                        <li><a href="#blog" class="smoothScroll">Cadastro</a></li>
+                        
                         <!--<li><a href="#price" class="smoothScroll">Prices</a></li>-->
                         <!--<li><a href="#testimonial" class="smoothScroll">Testimonials</a></li>-->
                     </ul>
@@ -109,7 +110,7 @@
                             <h2>SOBRE O BAÚ</h2>
                             <p>A Abravañel LTDA. em parceria com o Grupo S. Santos, traz para você um produto conhecido em todo o Brasil: O carnê do baú da felicidade!</p>
                             <p>Com enorme credibilidade entre os brasileiros e que já premiou milhares de pessoas.</p>
-                            <a href="cadastro.jsf" class="btn btn-default smoothScroll">Cadastro</a>
+                            <a href="#blog" class="btn btn-default smoothScroll">Cadastro</a>
                         </div>
                     </div>
 
@@ -324,6 +325,124 @@
             </div>
         </section>-->
 
+<section id="blog" class="parallax-section">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-8 col-sm-7">
+
+
+
+                        <div class="blog-content wow fadeInUp" data-wow-delay="1s">
+
+                            <h2>Não tem uma conta?</h2>
+                            <h3>Cadastre-se aqui!</h3>
+
+                            <div class="blog-clear"></div>
+                            <h:form>
+                                <p:growl id="messages"></p:growl>
+                                <h:panelGrid columns="2" styleClass="tabela">
+                                    
+                                    <p:outputLabel value="Título:"/>
+                                    <p:inputText id="input-titulo" value="#{livroBean.livro.titulo}" 	required="true"
+                                                 requiredMessage="É necessário informar um título"/>
+
+
+                                    <p:outputLabel value="Ano:"/>
+                                    <p:inputText id="input-ano" value="#{livroBean.livro.ano}" 	required="true"
+                                                 requiredMessage="É necessário informar um ano"  validatorMessage="Ano inválido">
+                                        <f:validateDoubleRange minimum="1500" maximum="2016"/>
+                                    </p:inputText>
+                                    
+
+
+                                    <p:outputLabel value="Autores:"/>
+                                    <p:inputText id="input-autores" value="#{livroBean.livro.autores}" 	required="true"
+                                                 requiredMessage="É necessário informar pelo menos um autor">
+                                    </p:inputText>
+                                    
+
+                                    <p:outputLabel value="Editora:"/>
+                                    <p:inputText id="input-editora" value="#{livroBean.livro.editora}" 	required="true"
+                                                 requiredMessage="É necessário informar uma editora"/>
+                                    
+
+                                    <p:outputLabel value="Edição:"/>
+                                    <p:inputText id="input-edicao" value="#{livroBean.livro.edicao}" 	required="true"
+                                                 requiredMessage="É necessário informar uma edição" validatorMessage="Valor inválido">
+                                        <f:validateDoubleRange minimum="1" maximum="999"/>
+                                    </p:inputText>
+                                    
+
+                                    
+                                </h:panelGrid>
+                                <p:commandButton id="cadastrar" class="form-botao" value="Cadastrar" action="#{livroBean.cadastrar()}"/>
+                            </h:form>
+                        </div>
+
+
+
+                        <!--                        <div class="blog-author wow fadeInUp" data-wow-delay="1s">
+                                                    <div class="media">
+                                                        <div class="media-object pull-left">
+                                                            <a href="#"><img src="images/blog-author.jpg" class="img-responsive img-circle" alt="blog"/></a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading">Michael Dan</h4>
+                                                            <p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue vulputate voluptate neque, curabitur.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="blog-comment wow fadeInUp" data-wow-delay="1s">
+                                                    <h3>2 comments</h3>
+                                                    <div class="media">
+                                                        <div class="media-object pull-left">
+                                                            <img src="images/comment1.jpg" class="img-responsive img-circle" alt="blog"/>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading">Sandar Minn</h4>
+                                                            <h5>18 May 2016</h5>
+                                                            <p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue vulputate voluptate neque, curabitur.</p>
+                                                            <div class="media">
+                                                                <div class="media-object pull-left">
+                                                                    <img src="images/comment2.jpg" class="img-responsive img-circle" alt="blog"/>
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <h4 class="media-heading">George Linn</h4>
+                                                                    <h5>14 May 2016</h5>
+                                                                    <p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue vulputate voluptate neque, curabitur.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="blog-comment-form wow fadeInUp" data-wow-delay="1s">
+                                                    <h3>Leave a comment</h3>
+                                                    <form action="#" method="post" id="comment-form">
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <input type="text" class="form-control" placeholder="Name" name="name" required="true"/>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <input type="email" class="form-control" placeholder="Email" name="email" required="true"/>
+                                                        </div>
+                                                        <div class="col-md-12 col-sm-12">
+                                                            <textarea class="form-control" placeholder="Message" rows="5" name="message" required="true" id="message"></textarea>
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-3">
+                                                            <input name="submit" type="submit" class="form-control" id="submit" value="Submit"></input>
+                                                        </div>
+                                                    </form>
+                                                </div>-->
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </section>
 
         <!-- =========================
             FOOTER SECTION   
