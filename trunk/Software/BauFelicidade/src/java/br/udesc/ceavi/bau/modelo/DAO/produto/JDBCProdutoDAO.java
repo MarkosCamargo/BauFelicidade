@@ -5,14 +5,18 @@
  */
 package br.udesc.ceavi.bau.modelo.DAO.produto;
 
+import br.udesc.ceavi.bau.modelo.DAO.core.Persistencia;
+import br.udesc.ceavi.bau.modelo.entidade.Categoria;
 import br.udesc.ceavi.bau.modelo.entidade.Produto;
 import br.udesc.ceavi.bau.util.Conexao;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author ignoi
+ * @author Sila Siebert
  */
 public class JDBCProdutoDAO implements ProdutoDAO {
 
@@ -28,7 +32,7 @@ public class JDBCProdutoDAO implements ProdutoDAO {
             stmt.setString(2, p.getDescricao());
             stmt.setDouble(3, p.getValor());
             stmt.setDouble(4, p.getPeso());
-            stmt.setDouble(5, p.getSatisfacao());
+            stmt.setInt(5, p.getCategoria().getId());
             stmt.executeUpdate();
             stmt.close();
             Conexao.fechar();
@@ -44,8 +48,7 @@ public class JDBCProdutoDAO implements ProdutoDAO {
     public boolean deletar(int id) {
         PreparedStatement stmt = null;
         String sql = "DELETE FROM public.\"Produto\"\n"
-                + " WHERE produtoId=?\n"
-                + "    VALUES (?);";;
+                + " WHERE \"produtoId\"=?\n";
         try {
             stmt = Conexao.getConexao(2).prepareStatement(sql);
             stmt.setInt(1, id);
@@ -65,17 +68,14 @@ public class JDBCProdutoDAO implements ProdutoDAO {
         PreparedStatement stmt = null;
         String sql = "UPDATE public.\"Produto\"\n"
                 + "   SET \"produtoId\"=?, descricao=?, valor=?, peso=?, \"categoriaId\"=?\n"
-                + " WHERE \"produtoId\"=?;\n"
-                + "    VALUES (?,?,?,?,?,?);";
+                + " WHERE \"produtoId\"=?;\n";
         try {
             stmt = Conexao.getConexao(2).prepareStatement(sql);
             stmt.setInt(1, p.getId());
             stmt.setString(2, p.getDescricao());
             stmt.setDouble(3, p.getValor());
             stmt.setDouble(4, p.getPeso());
-            //esqueci como determinar a categoria
-//            stmt.setInt(1, p.getCategoria());
-            stmt.setInt(5, p.getId());
+            stmt.setInt(5, p.getCategoria().getId());
             stmt.executeUpdate();
 
             stmt.close();
@@ -90,12 +90,60 @@ public class JDBCProdutoDAO implements ProdutoDAO {
 
     @Override
     public Produto pesquisar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PreparedStatement stmt = null;
+        String sql = "SELECT \"produtoId\", descricao, valor, peso, \"categoriaId\"\n"
+                + "  FROM public.\"Produto\";\n"
+                + " WHERE \"produtoId\"=?";
+        Produto p = null;
+        try {
+            stmt = Conexao.getConexao(2).prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            Categoria c = Persistencia.getPersistencia(2).getCategoriaDAO().pesquisar(rs.getInt(5));
+            p = new Produto(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getDouble(4), rs.getDouble(5), c);
+            stmt.close();
+            Conexao.fechar();
+
+        } catch (Exception e) {
+            System.out.println(e);
+            System.exit(0);
+
+        }
+
+        System.out.println(
+                "Produto pesquisado com sucesso!");
+        return p;
+
     }
 
     @Override
     public List<Produto> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        PreparedStatement stmt = null;
+        String sql = "SELECT \"produtoId\", descricao, valor, peso, \"categoriaId\"\n"
+                + "  FROM public.\"Produto\";";
+        ArrayList<Produto> lista = new ArrayList<>();
+        Produto p = null;
+        try {
+            stmt = Conexao.getConexao(2).prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
 
+            while (rs.next()) {
+                Categoria c = Persistencia.getPersistencia(2).getCategoriaDAO().pesquisar(rs.getInt(5));
+                p = new Produto(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getDouble(4), rs.getDouble(5), c);
+                lista.add(p);
+            }
+            stmt.close();
+            Conexao.fechar();
+
+        } catch (Exception e) {
+            System.out.println(e);
+            System.exit(0);
+
+        }
+        System.out.println("Produtos listados com sucesso!");
+        return lista;
+
+    }
 }

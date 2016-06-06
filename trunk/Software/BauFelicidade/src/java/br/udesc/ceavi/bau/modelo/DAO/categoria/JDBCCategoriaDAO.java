@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  *
- * @author ignoi
+ * @author Sila Siebert
  */
 public class JDBCCategoriaDAO implements CategoriaDAO {
 
