@@ -13,15 +13,15 @@ import java.util.List;
  * @author ignoi
  */
 public interface ProdutoDAO {
-    
+
     public boolean inserir(Produto p);
 
-    public boolean deletar(Produto p);
+    public boolean deletar(int id);
 
     public boolean atualizar(Produto p);
 
     public Produto pesquisar(int id);
 
     public List<Produto> listar();
-    
+
 }

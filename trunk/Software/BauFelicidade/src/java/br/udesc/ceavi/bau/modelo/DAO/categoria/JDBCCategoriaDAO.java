@@ -116,7 +116,7 @@ public class JDBCCategoriaDAO implements CategoriaDAO {
         Categoria c = null;
         try {
             stmt = Conexao.getConexao(2).prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery();
             Categoria cat = null;
             while (rs.next()) {
                 cat = new Categoria(rs.getInt("categoriaId"), rs.getString("descricao"));
