@@ -16,7 +16,7 @@ public interface CategoriaDAO {
     
      public boolean inserir(Categoria c);
 
-    public boolean deletar(Categoria c);
+    public boolean deletar(int id);
 
     public boolean atualizar(Categoria c);
 

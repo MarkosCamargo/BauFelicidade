@@ -55,6 +55,7 @@ CREATE TABLE "Produto"
 	"produtoId" integer NOT NULL,
 	"descricao" varchar,
 	"valor" double precision,
+	"peso" double precision,
 	"categoriaId" integer
 )
 ;
