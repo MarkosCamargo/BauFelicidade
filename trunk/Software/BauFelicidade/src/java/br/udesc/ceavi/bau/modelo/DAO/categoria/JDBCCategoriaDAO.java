@@ -9,7 +9,6 @@ import br.udesc.ceavi.bau.modelo.entidade.Categoria;
 import br.udesc.ceavi.bau.util.Conexao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,8 +43,7 @@ public class JDBCCategoriaDAO implements CategoriaDAO {
     public boolean deletar(int id) {
         PreparedStatement stmt = null;
         String sql = "DELETE FROM public.\"Categoria\"\n"
-                + " WHERE categoriaId=?\n"
-                + "    VALUES (?);";;
+                + " WHERE \"categoriaId\"=?";
         try {
             stmt = Conexao.getConexao(2).prepareStatement(sql);
             stmt.setInt(1, id);
@@ -65,8 +63,7 @@ public class JDBCCategoriaDAO implements CategoriaDAO {
         PreparedStatement stmt = null;
         String sql = "UPDATE public.\"Categoria\"\n"
                 + "   SET \"categoriaId\"=?, descricao=?\n"
-                + " WHERE categoriaId=?\n"
-                + "    VALUES (?, ?,?);";
+                + " WHERE \"categoriaId\"=?";
         try {
             stmt = Conexao.getConexao(2).prepareStatement(sql);
             stmt.setInt(1, c.getId());
@@ -87,15 +84,15 @@ public class JDBCCategoriaDAO implements CategoriaDAO {
     public Categoria pesquisar(int id) {
         PreparedStatement stmt = null;
         String sql = "SELECT \"categoriaId\", descricao\n"
-                + "  FROM public.\"Categoria\";\n"
-                + " WHERE categoriaId=?\n"
-                + "    VALUES (?);";
+                + "  FROM public.\"Categoria\"\n"
+                + " WHERE \"categoriaId\"=?";
         Categoria c = null;
         try {
             stmt = Conexao.getConexao(2).prepareStatement(sql);
             stmt.setInt(1, id);
 
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
             c = new Categoria(rs.getInt(1), rs.getString(2));
             stmt.close();
             Conexao.fechar();
