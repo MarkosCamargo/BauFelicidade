@@ -5,8 +5,7 @@
  */
 package br.udesc.ceavi.cesta.controle;
 
-import br.udesc.ceavi.cesta.modelo.entidade.Cesta;
-import br.udesc.ceavi.cesta.modelo.entidade.Produto;
+
 import java.util.List;
 
 /**
@@ -14,14 +13,13 @@ import java.util.List;
  * @author ignoi
  */
 public class NewClass {
-    
+
     public static void main(String[] args) {
         MCKP p = new Solver();
-        Cesta c = p.calulcar(12);
-        List<Produto> produtos = c.getProdutos();
-        for (Produto produto : produtos) {
-            System.out.println(produto.toString());
+        List<Integer> lista = p.calcular(12);
+        for (Integer integer : lista) {
+            System.out.println(integer);
         }
     }
-    
+
 }

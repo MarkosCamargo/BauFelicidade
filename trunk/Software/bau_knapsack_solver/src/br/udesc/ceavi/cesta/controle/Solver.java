@@ -6,9 +6,8 @@
 package br.udesc.ceavi.cesta.controle;
 
 import br.udesc.ceavi.cesta.modelo.dao.core.Persistencia;
-import br.udesc.ceavi.cesta.modelo.dao.produto.ProdutoDAO;
-import br.udesc.ceavi.cesta.modelo.entidade.Cesta;
 import br.udesc.ceavi.cesta.modelo.entidade.Produto;
+import java.util.ArrayList;
 import java.util.List;
 import org.gnu.glpk.GLPK;
 import org.gnu.glpk.GLPKConstants;
@@ -26,7 +25,7 @@ import org.gnu.glpk.glp_smcp;
 public class Solver implements MCKP {
 
     @Override
-    public Cesta calulcar(double w) {
+    public List<Integer> calcular(double w) {
 
         int quantidadeColunas = Persistencia.getPersistencia(1).getProdutoDAO().getQuantidade();
 
@@ -47,6 +46,10 @@ public class Solver implements MCKP {
             GLPK.glp_add_cols(lp, quantidadeColunas);
             ind = GLPK.new_intArray(quantidadeColunas);
             for (int i = 1; i <= quantidadeColunas; i++) {
+
+                GLPK.glp_set_col_name(lp, i, " x" + lista.get(i - 1).getId());
+                GLPK.glp_set_col_kind(lp, i, GLPKConstants.GLP_BV);
+                GLPK.glp_set_col_bnds(lp, i, GLPKConstants.GLP_DB, 0, 1);
                 GLPK.intArray_setitem(ind, i, i);
             }
             GLPK.glp_add_rows(lp, quantidadeLinhas);
@@ -58,24 +61,26 @@ public class Solver implements MCKP {
             }
             GLPK.glp_set_mat_row(lp, 1, quantidadeColunas, ind, val);
             GLPK.delete_doubleArray(val);
-            int categoriaAtual = 0;
+            int categoriaAtual = lista.get(0).getCategoria().getId();
+            int cat = 0;
             for (int i = 2; i <= quantidadeLinhas; i++) {
-                categoriaAtual = lista.get(i - 1).getCategoria().getId();
+
                 GLPK.glp_set_row_name(lp, i, " categoria " + i);
                 GLPK.glp_set_row_bnds(lp, i, GLPKConstants.GLP_DB, 0, 1);
                 val = GLPK.new_doubleArray(quantidadeColunas);
                 for (int j = 1; j <= quantidadeColunas; j++) {
-                    GLPK.glp_set_col_name(lp, j, " x" + lista.get(j - 1).getId());
-                    GLPK.glp_set_col_kind(lp, j, GLPKConstants.GLP_BV);
-                    GLPK.glp_set_col_bnds(lp, j, GLPKConstants.GLP_DB, 0, 1);
-                    if (lista.get(j - 1).getCategoria().getId() == categoriaAtual) {
+                    cat = lista.get(j - 1).getCategoria().getId();
+                    if (cat == categoriaAtual) {
+                        System.out.println(1);
                         GLPK.doubleArray_setitem(val, j, 1);
                     } else {
+                        System.out.println(0);
                         GLPK.doubleArray_setitem(val, j, 0);
                     }
                 }
                 GLPK.glp_set_mat_row(lp, i, quantidadeColunas, ind, val);
                 GLPK.delete_doubleArray(val);
+                categoriaAtual++;
             }
             GLPK.glp_set_obj_name(lp, " z ");
             GLPK.glp_set_obj_dir(lp, GLPKConstants.GLP_MAX);
@@ -90,18 +95,18 @@ public class Solver implements MCKP {
             ret = GLPK.glp_intopt(lp, parm);
             if (ret == 0) {
                 write_lp_solution(lp);
-                Cesta cesta = new Cesta();
+                List<Integer> listaId = new ArrayList<Integer>();
                 int n = GLPK.glp_get_num_cols(lp);
-                ProdutoDAO dao = Persistencia.getPersistencia(Persistencia.JDBC).getProdutoDAO();
                 for (int i = 1; i <= n; i++) {
                     String nome = GLPK.glp_get_col_name(lp, i);
                     double valor = GLPK.glp_mip_col_val(lp, i);
                     if (valor == 1) {
-                        int codigo = Integer.parseInt(nome.replace("x", "").trim());
-                        cesta.addProduto(dao.pesquisar(codigo));
+
+                        listaId.add(Integer.parseInt(nome.replace("x", "").trim()));
+
                     }
                 }
-                return cesta;
+                return listaId;
             } else {
                 System.out.println("The problem could not be solved.");
             }

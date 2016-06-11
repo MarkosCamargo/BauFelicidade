@@ -182,7 +182,7 @@ public class JDBCProdutoDAO implements ProdutoDAO {
 
             while (rs.next()) {
                 Categoria c = Persistencia.getPersistencia(1).getCategoriaDAO().pesquisar(rs.getInt(2));
-                p = new Produto(rs.getInt(1), rs.getDouble(3), rs.getDouble(3), c);
+                p = new Produto(rs.getInt(1), rs.getDouble(3), rs.getDouble(4), c);
                 lista.add(p);
             }
             stmt.close();

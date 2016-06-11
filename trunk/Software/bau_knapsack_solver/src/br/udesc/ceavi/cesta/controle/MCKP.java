@@ -6,6 +6,7 @@
 package br.udesc.ceavi.cesta.controle;
 
 import br.udesc.ceavi.cesta.modelo.entidade.Cesta;
+import java.util.List;
 
 /**
  *
@@ -23,6 +24,6 @@ public interface MCKP {
      * máximo para uma determinada cesta.
      * @return Um objeto cesta contendo todos os produtos escolhidos.
      */
-    public Cesta calulcar(double w);
+    public List<Integer> calcular(double w);
     
 }
