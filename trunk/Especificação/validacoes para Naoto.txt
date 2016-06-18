@@ -1,0 +1,21 @@
+CRIAR CESTA
+
+- Administrador deve cadastrar categorias para o leilao, validar se essas categorias nao foram utilizadas no ultimo ano.
+
+- Administrador deve informar um lucro para a cesta, assim, deve ser feito o calculo: [(pagantes x (valorCarne x 3)) * (1 - lucro)] / pagantes. 
+
+- Valor da cesta nao pode ultrapassar o valor maximo estipulado no calculo acima.
+
+AVALIAR PRODUTO
+
+- Clientes podem avaliar produtos, fornecedores so podem se forem tambem clientes, caso contrario, nao.
+
+- O cliente pode avaliar o produto quantas vezes for necessário (desde que esteja dentro do prazo) e apenas a ultima avaliaçao ficara salva.
+
+- Os produtos devem entrar para avaliaçao assim que forem lançados pelos fornecedores.
+
+OFERECER PRODUTOS
+
+- Apenas fornecedores podem oferecer produtos
+
+- Para calculo da cesta, os valores dos produtos lancados devem ser arredondados pra cima e serem tratados como inteiro
