@@ -34,7 +34,7 @@ public class Conexao {
     private static Database db;
     private static String mydatabase = "baufelicidade";
     private static String username = "postgres";
-    private static String password = "root";
+    private static String password = "sandia99";
     private static int database = 0;
 
     public static String status = "Não inicializado.";

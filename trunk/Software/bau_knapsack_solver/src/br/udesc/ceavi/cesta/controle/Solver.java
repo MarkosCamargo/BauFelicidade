@@ -55,7 +55,7 @@ public class Solver implements MCKP {
             GLPK.glp_add_rows(lp, quantidadeLinhas);
             GLPK.glp_set_row_name(lp, 1, "max");
             GLPK.glp_set_row_bnds(lp, 1, GLPKConstants.GLP_DB, 0, w);
-            val = GLPK.new_doubleArray(quantidadeColunas);
+            val = GLPK.new_doubleArray(quantidadeColunas+1);
             for (int i = 1; i <= quantidadeColunas; i++) {
                 GLPK.doubleArray_setitem(val, i, lista.get(i - 1).getValor());
             }
@@ -67,7 +67,7 @@ public class Solver implements MCKP {
 
                 GLPK.glp_set_row_name(lp, i, " categoria " + i);
                 GLPK.glp_set_row_bnds(lp, i, GLPKConstants.GLP_DB, 0, 1);
-                val = GLPK.new_doubleArray(quantidadeColunas);
+                val = GLPK.new_doubleArray(quantidadeColunas+1);
                 for (int j = 1; j <= quantidadeColunas; j++) {
                     cat = lista.get(j - 1).getCategoria().getId();
                     if (cat == categoriaAtual) {

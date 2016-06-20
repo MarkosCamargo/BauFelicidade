@@ -40,7 +40,7 @@ public class Solver implements MCKP {
             ind = GLPK.new_intArray(cols);
             for (int i = 1; i <= cols; i++) {
 
-                GLPK.glp_set_col_name(lp, i, "" + categorias[i - 1]);
+                GLPK.glp_set_col_name(lp, i, "" + produtos[i - 1]);
                 GLPK.glp_set_col_kind(lp, i, GLPKConstants.GLP_BV);
                 GLPK.glp_set_col_bnds(lp, i, GLPKConstants.GLP_DB, 0, 1);
                 GLPK.intArray_setitem(ind, i, i);
@@ -57,18 +57,26 @@ public class Solver implements MCKP {
             }
             GLPK.glp_set_mat_row(lp, 1, cols, ind, val);
             GLPK.delete_doubleArray(val);
-            int contCat = 0;
-            int categoriaAtual;
-            int cat;
+            int[] distinctCategorias = new int[rows - 1];
+            distinctCategorias[0] = categorias[0];
+            int indiceAtual = 0;
+
+            for (int i = 0; i < categorias.length; i++) {
+                if (categorias[i] != distinctCategorias[indiceAtual]) {
+                    indiceAtual++;
+                    distinctCategorias[indiceAtual] = categorias[i];
+
+                }
+            }
+
             for (int i = 2; i <= rows; i++) {
-                categoriaAtual = categorias[contCat];
+                ;
                 GLPK.glp_set_row_name(lp, i, " categoria " + i);
                 GLPK.glp_set_row_bnds(lp, i, GLPKConstants.GLP_DB, 0, 1);
                 val = GLPK.new_doubleArray(cols + 1);
                 for (int j = 1; j <= cols; j++) {
-                    cat = categorias[j - 1];
 
-                    if (cat == categoriaAtual) {
+                    if (distinctCategorias[i - 2] == categorias[j - 1]) {
                         GLPK.doubleArray_setitem(val, j, 1);
                     } else {
                         GLPK.doubleArray_setitem(val, j, 0);
@@ -76,7 +84,7 @@ public class Solver implements MCKP {
                 }
                 GLPK.glp_set_mat_row(lp, i, cols, ind, val);
                 GLPK.delete_doubleArray(val);
-                contCat++;
+
             }
 
             GLPK.glp_set_obj_name(lp, " z ");
