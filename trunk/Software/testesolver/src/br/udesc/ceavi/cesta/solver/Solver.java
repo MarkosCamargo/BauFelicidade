@@ -91,7 +91,6 @@ public class Solver implements MCKP {
             for (int i = 1; i <= cols; i++) {
                 GLPK.glp_set_obj_coef(lp, i, satisfacoes[i - 1]);
             }
-
             parm = new glp_iocp();
             GLPK.glp_init_iocp(parm);
             parm.setPresolve(GLPKConstants.GLP_ON);
