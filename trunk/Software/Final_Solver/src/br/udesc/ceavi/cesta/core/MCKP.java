@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author ignoi
+ * @author Sila Siebert
  */
 public interface MCKP {
 
